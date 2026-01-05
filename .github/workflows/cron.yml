@@ -3,7 +3,7 @@ name: 10-Minute Email Cron
 on:
   schedule:
     # This syntax runs every 10 minutes
-    - cron: '*/1 * * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch: # Allows you to run this manually for testing
 
 jobs:
