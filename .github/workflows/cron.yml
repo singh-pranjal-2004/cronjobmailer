@@ -1,0 +1,26 @@
+name: 10-Minute Email Cron
+
+on:
+  schedule:
+    # This syntax runs every 10 minutes
+    - cron: '*/1 * * * *'
+  workflow_dispatch: # Allows you to run this manually for testing
+
+jobs:
+  send-mail:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Run Send Mail Script
+        env:
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+        run: python send_mail.py
